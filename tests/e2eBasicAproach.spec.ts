@@ -10,7 +10,8 @@ import { test, expect } from '@playwright/test'
                     - Go back
                     - Navigate to Career vacancies ( Header magnifier icon / Or by the side menu)
                     - Input "Software Developer Apprentice" into the filter
-                    - Verify that "Software Developer Apprentice" is shown and click to show the role overview */
+                    - Verify that "Software Developer Apprentice" is shown and click to show the role overview
+                     */
 
 test.beforeEach(async ({ page }) => {
     // Navigate to CDL home page before each test. 
@@ -34,8 +35,7 @@ test('E2E steps', async ({ page }) => {
     await vacanciesFilter.fill('java engineer')//Filter the job position 
     await vacanciesFilter.press('Enter')//Filter the job position / Press Enter
     const advertLocator = await page.getByRole('link', { name: 'This is an exciting' })
-    console.log(advertLocator)
-    await expect(advertLocator).toHaveText('This is an exciting opportunity for a passionate Java engineer to join one of many agile squads ...')
-    await advertLocator.click()
+    await expect(advertLocator).toHaveText('This is an exciting opportunity for a passionate Java engineer to join one of many agile squads ...')//Validate the expected position is located
+    await advertLocator.click()// Click on the adver element
 
 })
