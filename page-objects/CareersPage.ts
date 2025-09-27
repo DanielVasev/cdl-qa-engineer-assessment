@@ -2,19 +2,17 @@ import { Page, Locator, expect } from '@playwright/test'
 
 export class CareersPage {
   readonly page: Page
-  readonly vacanciesLink: Locator
   readonly workAtCdl: Locator
   readonly vacanciesFilter: Locator
 
   constructor(page: Page) {
     this.page = page
-    this.vacanciesLink = page.getByRole('link', { name: 'Vacancies', exact: true })
     this.workAtCdl = page.locator('#contentbox0').getByText('Work at CDL')
     this.vacanciesFilter = page.locator('#vacsearch')
   }
 
-  async openVacancies() {
-    await this.vacanciesLink.click()
+  async waitForCareersPageLoad() {
+    await expect(this.page).toHaveTitle('CDL | Vacancies at CDL');
   }
 
   async validateWorkAtCdl() {
