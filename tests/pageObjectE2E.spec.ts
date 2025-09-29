@@ -10,32 +10,34 @@ test.beforeEach(async ({ page }) => {
 })
 
 test('E2E steps', async ({ page }) => {
+  // Initialize Page Objects
   const home = new HomePage(page)
   const news = new NewsPage(page)
   const careers = new CareersPage(page)
   const menuActions = new MenuActions(page)
 
-  //Home page validation and navigating to "News"
+  // Home page: wait for page load, then navigate to News
   await home.waitForPageLoad()
   await menuActions.clickMediaNews()
-  
-  //"News" page validating and navigating to "Cloud-Only"
-  await news.waitForPageLoad()
-  await news.clickCloudOnlyCta()   
- 
-  //Validate "Cloud-only" page and executing "Back" btn event 
-  await news.waitForCloudPageLoad()
-  await page.goBack() 
 
-  //Navigate to Careers Page and page validation 
+  // News page: validate load, then navigate to Cloud-only article
+  await news.waitForPageLoad()
+  await news.clickCloudOnlyCta()
+
+  // Cloud-only page: validate load, then go back to News
+  await news.waitForCloudPageLoad()
+  await page.goBack()
+
+  // Careers page: navigate via menu and validate load
   await menuActions.clickCareersVacBtn()
   await careers.waitForCareersPageLoad()
 
-  //Filter and validate job advert And Click event. 
+  // Vacancies: filter by "java engineer", validate advert, and open it
   await careers.filterVacancies('java engineer')
   await careers.openVacancy('This is an exciting')
 })
-    // teardown: close context/browser or reset state    
-    test.afterEach(async ({ page }) => {
-    await page.close() 
+
+// Teardown: close page after each test
+test.afterEach(async ({ page }) => {
+  await page.close()
 })

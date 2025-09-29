@@ -8,7 +8,6 @@ export class HomePage {
 
   constructor(page: Page) {
     this.page = page
-    
     this.mediaMenu = page.getByText('Media')
     this.careersMenu = page.getByText('Careers')
   }
