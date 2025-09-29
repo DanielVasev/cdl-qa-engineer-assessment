@@ -17,8 +17,6 @@ Make sure you have these installed on your machine:
 - Visual Studio Code
   (recommended code editor)
 
-👉 "VS Code" is strongly recommended because it has great extensions for Playwright, TypeScript/JavaScript, debugging, and integrated terminal support.
-
 ⚙️ Installation
 
 Clone the repository:
